@@ -1,0 +1,45 @@
+@page
+@model UpdateModel
+@using LetsGoPark.WebSite.Models
+@using LetsGoPark.WebSite.Services
+@using LetsGoPark.WebSite.Components
+@inject JsonFileParksService ParkService
+
+
+<!--Links our site.css style sheet to the document-->
+<link rel="stylesheet" type="text/css" href="~/css/site.css">
+
+@{
+    //Saves the title of the webpage
+    ViewData["Title"] = "Update Comment";
+
+    // Extract the comment data from the query string parameters
+    int commentIndex = int.Parse(Request.Query["commentIndex"]);
+    string selectedParkId = Request.Query["selectedParkId"];
+    string name = Request.Query["name"];
+    string dateTime = Request.Query["dateTime"];
+    string description = Request.Query["description"];
+    string token = Request.Query["token"];
+    //Old comment:
+    string[] oldComment = { name, dateTime, description, token };
+    //New comment:
+    string[] newComment = oldComment;
+}
+
+    <!--Renders Udpdate.razor to populate Update page.-->
+    @(await Html.RenderComponentAsync<UpdateComment>(
+        RenderMode.ServerPrerendered, new 
+        {
+            CommentIndex = commentIndex,
+            SelectedParkId = selectedParkId,
+            Name = name,
+            DateTime = dateTime,
+            Description = description,
+            Token = token
+        }))
+
+    <script src="_framework/blazor.server.js"></script>
+
+
+
+
