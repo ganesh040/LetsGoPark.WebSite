@@ -1,32 +1,72 @@
 ﻿using Microsoft.Extensions.Logging;
 
+
+
 using NUnit.Framework;
+
+
 
 using Moq;
 
+
+
 using LetsGoPark.WebSite.Pages;
-using Microsoft.Extensions.Logging.Abstractions;
-using Microsoft.AspNetCore.Mvc.RazorPages;
-using System;
 
 namespace UnitTests.Pages.AboutUs
 {
-    public class AboutUsModelTests
+      /// Testing for the AboutUs 
+
+    public class AboutUsTests
     {
-        [Test]
-        public void ModelIsRendered()
+        #region TestSetup
+
+        /// Page model for the AboutUs
+
+        public static AboutUsModel pageModel;
+
+                /// Initializing the test class
+
+        [SetUp]
+        public void TestInitialize()
         {
-            // Arrange
-            var loggerMock = new Mock<ILogger<AboutUsModel>>();
+            var MockLoggerDirect = Mock.Of<ILogger<AboutUsModel>>();
 
-            // Act
-            var model = new AboutUsModel(loggerMock.Object);
 
-            // Assert
-            Assert.NotNull(model);
-           
+
+            pageModel = new AboutUsModel(MockLoggerDirect)
+            {
+                PageContext = TestHelper.PageContext,
+                TempData = TestHelper.TempData,
+            };
         }
 
 
+
+        #endregion TestSetup
+
+
+
+        #region OnGet
+
+                /// Testing  OnGet of the AboutUs 
+
+        [Test]
+        public void OnGet_Valid_Activity_Set_Should_Return_RequestId()
+        {
+            // Arrange
+
+
+
+            // Act
+            pageModel.OnGet();
+
+
+            // Assert
+            Assert.AreEqual(true, pageModel.ModelState.IsValid);
+        }
+
+
+
+        #endregion OnGet
     }
 }

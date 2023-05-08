@@ -1,19 +1,37 @@
 ﻿using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
 
-namespace LetsGoPark.WebSite.Pages
-{
+    /// <summary>
+        /// model for the About Us page, used in AboutUs.cshtml
+        /// </summary>
     public class AboutUsModel : PageModel
+{
+    // Logger
+    private readonly ILogger<AboutUsModel> _logger;
+
+
+
+    /// <summary>
+            /// default constructor
+            /// </summary>
+            /// <param name="logger"></param>
+    public AboutUsModel(ILogger<AboutUsModel> logger)
     {
-        private readonly ILogger<AboutUsModel> _logger;
+        _logger = logger;
+    }
 
-        public AboutUsModel(ILogger<AboutUsModel> logger)
-        {
-            _logger = logger;
-        }
 
-        public void OnGet()
-        {
-        }
+
+    /// <summary>
+            /// OnGet() does not have any functionality
+            /// </summary>
+    public void OnGet()
+    {
     }
 }
+
+
+        
+
+
+
