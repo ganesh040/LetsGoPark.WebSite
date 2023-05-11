@@ -9,32 +9,32 @@ namespace LetsGoPark.WebSite.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class ParksController : ControllerBase
+    public class ProductsController : ControllerBase
     {
-        public ParksController(JsonFileParksService parkService)
+        public ProductsController(JsonFileProductService productService)
         {
-            ParkService = ParkService;
+            ProductService = productService;
         }
 
-        public JsonFileParksService ParkService { get; }
+        public JsonFileProductService ProductService { get; }
 
         [HttpGet]
-        public IEnumerable<ParksModel> Get()
+        public IEnumerable<ProductModel> Get()
         {
-            return ParkService.GetParks();
+            return ProductService.GetAllData();
         }
 
         [HttpPatch]
         public ActionResult Patch([FromBody] RatingRequest request)
         {
-            ParkService.AddRating(request.ParkId, request.Rating);
+            ProductService.AddRating(request.ProductId, request.Rating);
             
             return Ok();
         }
 
         public class RatingRequest
         {
-            public string ParkId { get; set; }
+            public string ProductId { get; set; }
             public int Rating { get; set; }
         }
     }

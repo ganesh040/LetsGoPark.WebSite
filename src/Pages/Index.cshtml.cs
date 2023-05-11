@@ -8,24 +8,23 @@ using LetsGoPark.WebSite.Services;
 
 namespace LetsGoPark.WebSite.Pages
 {
-    public class IndexModel : PageModel 
+    public class IndexModel : PageModel
     {
         private readonly ILogger<IndexModel> _logger;
 
         public IndexModel(ILogger<IndexModel> logger,
-            JsonFileParksService parkService)
+            JsonFileProductService productService)
         {
             _logger = logger;
-            ParkService = parkService;
+            ProductService = productService;
         }
-        
-       
-        public JsonFileParksService ParkService { get; }
-        public IEnumerable<ParksModel> Parks { get; private set; }
+
+        public JsonFileProductService ProductService { get; }
+        public IEnumerable<ProductModel> Products { get; private set; }
 
         public void OnGet()
         {
-            Parks = ParkService.GetParks();
+            Products = ProductService.GetAllData();
         }
     }
 }

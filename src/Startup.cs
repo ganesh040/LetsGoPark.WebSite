@@ -7,7 +7,6 @@ using Microsoft.Extensions.Hosting;
 
 namespace LetsGoPark.WebSite
 {
-    //Creates a startup protocol for the web builder used in Program.cs
     public class Startup
     {
         public Startup(IConfiguration configuration)
@@ -15,17 +14,17 @@ namespace LetsGoPark.WebSite
             Configuration = configuration;
         }
 
-        //provides get functionality for Configuration
         public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddRazorPages();
+            services.AddRazorPages().AddRazorRuntimeCompilation();
             services.AddServerSideBlazor();
             services.AddHttpClient();
             services.AddControllers();
-            services.AddTransient<JsonFileParksService>();
+            services.AddTransient<JsonFileProductService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -38,7 +37,7 @@ namespace LetsGoPark.WebSite
             else
             {
                 app.UseExceptionHandler("/Error");
-                // The default HSTS value is 30 days. You may want to change this for Parkion scenarios, see https://aka.ms/aspnetcore-hsts.
+                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
 
@@ -55,10 +54,10 @@ namespace LetsGoPark.WebSite
                 endpoints.MapControllers();
                 endpoints.MapBlazorHub();
 
-                // endpoints.MapGet("/Parks", (context) => 
+                // endpoints.MapGet("/products", (context) => 
                 // {
-                //     var Parks = app.ApplicationServices.GetService<JsonFileParksService>().GetParks();
-                //     var json = JsonSerializer.Serialize<IEnumerable<Park>>(Parks);
+                //     var products = app.ApplicationServices.GetService<JsonFileProductService>().GetProducts();
+                //     var json = JsonSerializer.Serialize<IEnumerable<Product>>(products);
                 //     return context.Response.WriteAsync(json);
                 // });
             });

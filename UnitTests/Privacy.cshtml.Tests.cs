@@ -1,71 +1,46 @@
 ﻿using Microsoft.Extensions.Logging;
 
-
-
 using NUnit.Framework;
-
-
 
 using Moq;
 
-
-
 using LetsGoPark.WebSite.Pages;
 
-namespace UnitTests.Pages.AboutUs
+namespace UnitTests.Pages.Privacy
 {
-      /// Testing for the AboutUs 
-
-    public class AboutUsTests
+    public class PrivacyTests
     {
-        #region TestSetup
-
-        /// Page model for the AboutUs
-
-        public static AboutUsModel pageModel;
-
-                /// Initializing the test class
+        #region TestSetup
+        public static PrivacyModel pageModel;
 
         [SetUp]
         public void TestInitialize()
         {
-            var MockLoggerDirect = Mock.Of<ILogger<AboutUsModel>>();
+            var MockLoggerDirect = Mock.Of<ILogger<PrivacyModel>>();
 
-
-
-            pageModel = new AboutUsModel(MockLoggerDirect)
+            pageModel = new PrivacyModel(MockLoggerDirect)
             {
                 PageContext = TestHelper.PageContext,
                 TempData = TestHelper.TempData,
             };
         }
 
-
-
         #endregion TestSetup
 
-
-
         #region OnGet
-
-                /// Testing  OnGet of the AboutUs 
-
         [Test]
         public void OnGet_Valid_Activity_Set_Should_Return_RequestId()
         {
             // Arrange
 
-
-
             // Act
             pageModel.OnGet();
 
+            // Reset
 
             // Assert
             Assert.AreEqual(true, pageModel.ModelState.IsValid);
         }
-
-
 
         #endregion OnGet
     }

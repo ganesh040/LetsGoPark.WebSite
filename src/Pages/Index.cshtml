@@ -2,12 +2,9 @@
 @using LetsGoPark.WebSite.Components
 @model IndexModel
 @{
-    //Saves the title of the webpage if we decide to use it 
-    ViewData["Title"] = "Home";
+    ViewData["Title"] = "Index page";
 }
 
-<!--Renders the webpage for the home page using Homepage.razor-->
-@(await Html.RenderComponentAsync<Homepage>(RenderMode.ServerPrerendered))
+@(await Html.RenderComponentAsync<ProductList>(RenderMode.ServerPrerendered))
 
 <script src="_framework/blazor.server.js"></script>
-

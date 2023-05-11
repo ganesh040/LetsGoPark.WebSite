@@ -24,7 +24,7 @@ namespace UnitTests
     /// 
     /// The View Data and Teamp Data
     /// 
-    /// The Park Service
+    /// The Product Service
     /// </summary>
     public static class TestHelper
     {
@@ -38,7 +38,7 @@ namespace UnitTests
         public static ViewDataDictionary ViewData;
         public static TempDataDictionary TempData;
         public static PageContext PageContext;
-        public static JsonFileParksService ParkService;
+        public static JsonFileProductService ProductService;
 
         /// <summary>
         /// Default Constructor
@@ -70,11 +70,11 @@ namespace UnitTests
                 HttpContext = HttpContextDefault
             };
 
-            ParkService = new JsonFileParksService(MockWebHostEnvironment.Object);
+            ProductService = new JsonFileProductService(MockWebHostEnvironment.Object);
 
-            JsonFileParksService parkService;
+            JsonFileProductService productService;
 
-            parkService = new JsonFileParksService(TestHelper.MockWebHostEnvironment.Object);
+            productService = new JsonFileProductService(TestHelper.MockWebHostEnvironment.Object);
         }
     }
 }
