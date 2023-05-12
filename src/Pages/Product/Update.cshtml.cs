@@ -1,40 +1,69 @@
-using Microsoft.AspNetCore.Mvc;
+using System.Linq;
+
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.AspNetCore.Mvc;
 
 using LetsGoPark.WebSite.Models;
 using LetsGoPark.WebSite.Services;
 
 
-/// CreateModel page injects a JsonFileProductService dependency and handles GET requests by creating or retrieving a Product object.
-/// Redirecting to the Update page.
-
 namespace LetsGoPark.WebSite.Pages.Product
 {
-    public class CreateModel : PageModel
+    /// <summary>
+    /// Manage the Update of the data for a single record
+    /// </summary>
+
+    public class UpdateModel : PageModel
     {
-        // Data middle tier
+        // Data middletier
         public JsonFileProductService ProductService { get; }
 
-        
+        /// <summary>
+        /// Defualt Construtor
+        /// </summary>
         /// <param name="logger"></param>
         /// <param name="productService"></param>
-        public CreateModel(JsonFileProductService productService)
+        public UpdateModel(JsonFileProductService productService)
         {
             ProductService = productService;
         }
 
-        // The data to show
-        public ProductModel Product;
+        // The data to show, bind to it for the post
+        [BindProperty]
+        public ProductModel Product { get; set; }
 
-        
+        /// <summary>
         /// REST Get request
-        
+        /// Loads the Data
+        /// </summary>
         /// <param name="id"></param>
-        public IActionResult OnGet()
+        
+        /// OnGet method handles the GET request for loading the data to be updated
+        public void OnGet(string id)
         {
-            Product = ProductService.CreateData();
+            Product = ProductService.GetAllData().FirstOrDefault(m => m.Id.Equals(id));
+        }
 
-            return RedirectToPage("./Update", new { Id = Product.Id });
+        /// <summary>
+        /// Post the model back to the page
+        /// The model is in the class variable Product
+        /// Call the data layer to Update that data
+        /// Then return to the index page
+        /// </summary>
+        /// <returns></returns>
+        
+        /// OnPost method handles the POST request when the form is submitted for updating the data
+
+        public IActionResult OnPost()
+        {
+            if (!ModelState.IsValid)
+            {
+                return Page();
+            }
+
+            ProductService.UpdateData(Product);
+
+            return RedirectToPage("./Index");
         }
     }
 }
