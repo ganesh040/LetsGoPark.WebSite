@@ -1,40 +1,40 @@
-using System.Collections.Generic;
-
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
 using LetsGoPark.WebSite.Models;
 using LetsGoPark.WebSite.Services;
 
+
+/// CreateModel page injects a JsonFileProductService dependency and handles GET requests by creating or retrieving a Product object.
+/// Redirecting to the Update page.
+
 namespace LetsGoPark.WebSite.Pages.Product
 {
-    /// <summary>
-    /// Index Page will return all the data to show the user
-    /// </summary>
-    public class IndexModel : PageModel
+    public class CreateModel : PageModel
     {
-        /// <summary>
-        /// Default Constructor
-        /// </summary>
+        // Data middle tier
+        public JsonFileProductService ProductService { get; }
+
+        
+        /// <param name="logger"></param>
         /// <param name="productService"></param>
-        public IndexModel(JsonFileProductService productService)
+        public CreateModel(JsonFileProductService productService)
         {
             ProductService = productService;
         }
 
-        // Data Service
-        public JsonFileProductService ProductService { get; }
+        // The data to show
+        public ProductModel Product;
 
-        // Collection of the Data
-        public IEnumerable<ProductModel> Products { get; private set; }
-
-        /// <summary>
-        /// REST OnGet
-        /// Return all the data
-        /// </summary>
-        public void OnGet()
+        
+        /// REST Get request
+        
+        /// <param name="id"></param>
+        public IActionResult OnGet()
         {
-            Products = ProductService.GetAllData();
+            Product = ProductService.CreateData();
+
+            return RedirectToPage("./Update", new { Id = Product.Id });
         }
     }
 }
