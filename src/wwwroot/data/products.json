@@ -236,7 +236,6 @@
     "CommentList": []
   },
   {
-<<<<<<< HEAD
     "Id": "9d40a245-1d8f-4601-8f06-331909257932",
     "Maker": null,
     "img": "",
@@ -251,9 +250,6 @@
   },
   {
     "Id": "8afb0f0d-0f6d-40db-a422-cee55380001a",
-=======
-    "Id": "29b20ffa-4954-4a07-a3cf-69aaf7d87040",
->>>>>>> 55efe16 (modified products.json)
     "Maker": null,
     "img": "",
     "Url": "Enter URL",
