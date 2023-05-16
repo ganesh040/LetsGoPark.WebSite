@@ -8,9 +8,7 @@ using LetsGoPark.WebSite.Services;
 
 namespace LetsGoPark.WebSite.Pages.Product
 {
-    /// <summary>
-    /// Manage the Delete of the data for a single record
-    /// </summary>
+    
     public class DeleteModel : PageModel
     {
         // Data middletier
