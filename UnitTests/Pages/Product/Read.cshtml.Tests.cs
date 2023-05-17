@@ -14,8 +14,10 @@ namespace UnitTests.Pages.Product.Read
         [SetUp]
         public void TestInitialize()
         {
+            // Initialize the page model with ProductService
             pageModel = new ReadModel(TestHelper.ProductService)
             {
+                // Additional initialization parameters can be added here if necessary
             };
         }
 
@@ -25,12 +27,12 @@ namespace UnitTests.Pages.Product.Read
         [Test]
         public void OnGet_Valid_Should_Return_Products()
         {
-            // Arrange
+            // Arrange (preparing the necessary objects or data for the test)
 
-            // Act
+            // Act (performing the actual operation being tested)
             pageModel.OnGet("LAKE SAMMAMISH STATE PARK");
 
-            // Assert
+            // Assert (verifying the expected outcome)
             Assert.AreEqual(true, pageModel.ModelState.IsValid);
             Assert.AreEqual("LAKE SAMMAMISH STATE PARK", pageModel.Product.Title);
         }
