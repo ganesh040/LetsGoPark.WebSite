@@ -18,13 +18,15 @@ namespace UnitTests.Services.JsonFileProductServiceTests
     public class JsonFileProductServiceTests
     {
         #region TestSetup
+        // The pageModel instance is declared as a static variable
         public static UpdateModel pageModel;
 
 
-
+        // This method is executed before each test method
         [SetUp]
         public void TestInitialize()
         {
+            // Instantiate a new UpdateModel with the ProductService dependency from the TestHelper
             pageModel = new UpdateModel(TestHelper.ProductService);
         }
 
@@ -35,14 +37,15 @@ namespace UnitTests.Services.JsonFileProductServiceTests
 
 
         #region AddRating
+        // Test method for the AddRating method of the ProductService class when the product is null
         [Test]
         public void AddRating_InValid_Product_Null_Should_Return_False()
         {
             // Arrange
 
-
-
             // Act
+
+            // Call the AddRating method of the ProductService with a null product
 
 
 
@@ -85,13 +88,14 @@ namespace UnitTests.Services.JsonFileProductServiceTests
 
 
 
-            // Get the First data item
+            // Get the first data item
             var data = TestHelper.ProductService.GetAllData().First();
             var countOriginal = data.Ratings.Length;
 
 
 
             // Act
+            // Call the AddRating method of the ProductService with a valid product ID and rating
             var result = TestHelper.ProductService.AddRating(data.Id, 5);
             var dataNewList = TestHelper.ProductService.GetAllData().First();
 
@@ -206,6 +210,7 @@ namespace UnitTests.Services.JsonFileProductServiceTests
 
 
             // Act
+            // Call the UpdateData method of the ProductService with the invalid product
             var result = TestHelper.ProductService.UpdateData(pageModel.Product);
 
 
