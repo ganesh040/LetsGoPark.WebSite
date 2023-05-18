@@ -26,12 +26,14 @@ namespace UnitTests.Components
             Services.AddSingleton<JsonFileProductService>(TestHelper.ProductService);
 
             // Act
+            // Render the ProductList component
             var page = RenderComponent<ProductList>();
 
             // Get the Cards retrned
             var result = page.Markup;
 
             // Assert
+            // Check if the markup contains a specific content
             Assert.AreEqual(true, result.Contains("LAKE SAMMAMISH STATE PARK"));
         }
 
@@ -43,6 +45,7 @@ namespace UnitTests.Components
             Services.AddSingleton<JsonFileProductService>(TestHelper.ProductService);
             var id = "MoreInfoButton_BRIDLE TRAILS STATE PARK";
 
+            // Render the ProductList component
             var page = RenderComponent<ProductList>();
 
             // Find the Buttons (more info)
@@ -58,6 +61,7 @@ namespace UnitTests.Components
             var pageMarkup = page.Markup;
 
             // Assert
+            // Check if the markup contains a specific content
             Assert.AreEqual(true, pageMarkup.Contains(""));
         }
         #endregion SelectProduct
@@ -83,6 +87,7 @@ namespace UnitTests.Components
             Services.AddSingleton<JsonFileProductService>(TestHelper.ProductService);
             var id = "MoreInfoButton_Juanita Beach Park";
 
+            // Render the ProductList component
             var page = RenderComponent<ProductList>();
 
             // Find the Buttons (more info)
