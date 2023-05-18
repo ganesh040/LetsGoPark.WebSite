@@ -2,23 +2,38 @@
 @using LetsGoPark.WebSite.Services
 @using Microsoft.AspNetCore.Components.Web
 @inject JsonFileProductService ProductService
+@inject NavigationManager NavigationManager
 
+<div>
+    <div class="row">
+        <div class="col">
+            <input type="text" @onchange="(e) => UpdateFilterText(e.Value.ToString())" value="@FilterDataString" />
+            <button @onclick="(e => EnableFilterData())" class="btn btn-success">Filter</button>
+            <button @onclick="ClearInput" class="btn btn-red btn-danger" id="clear">
+                Clear
+            </button>
+        </div>
+    </div>
+
+</div>
 
 <div class="container-fluid">
     @{
         var productList = ProductService.GetAllData();
 
         /*
-
-            Change the grouping sort order to be
-            Order by ProductType
-            Then order by ProductList Alphabetic within the Product data set
+         * 
+        Change the grouping sort order to be
+        Order by ProductType
+        Then order by ProductList Alphabetic within the Product data set
 
         */
 
         // Group by the Enum
         foreach (ProductTypeEnum productType in Enum.GetValues(typeof(ProductTypeEnum)))
         {
+
+
             // Get only the products that are of this enum type
             var productListGroup = productList.Where(m => m.ProductType == productType);
 
@@ -26,10 +41,10 @@
             productListGroup = productListGroup.OrderBy(m => m.Title);
 
             // If filter is enabled, reduce the data set to the filter string
-            //if (FilterData)
-            //{
-            //    productListGroup = productListGroup.Where(m => m.Title.Contains(FilterDataString));
-            //}
+            if (FilterData)
+            {
+                productListGroup = productListGroup.Where(m => m.Title.Contains(FilterDataString));
+            }
 
             if (productListGroup.Any())
             {
@@ -58,7 +73,8 @@
                 </div>
             }
         }
-    }
+        }
+   
 </div>
 
 @if (selectedProduct != null)
@@ -242,5 +258,34 @@
         // Set the NewComment flag to false to hide the input box
         NewComment = false;
     }
+    string FilterDataString = "";
+    bool FilterData = false;
 
+    void UpdateFilterText(string text)
+    {
+        FilterDataString = text;
+    }
+
+    void EnableFilterData()
+    {
+        // If the Filter is enabled, set the filter flag
+        FilterData = true;
+    }
+
+    void ClearFilterData()
+    {
+        // If the Filter is enabled, set the filter flag
+        FilterData = false;
+    }
+    public void ClearInput()
+    {
+        FilterDataString = string.Empty;
+        NavigationManager.NavigateTo(NavigationManager.Uri, forceLoad: true);
+
+
+
+    }
+ 
 }
+
+

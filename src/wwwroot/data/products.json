@@ -76,7 +76,14 @@
     "Title": "2nd Ave South Dock",
     "Description": "2nd Avenue South Dock is south of Marina Park and commonly called the \u0022South Dock.\u0022",
     "Ratings": [
-      1
+      1,
+      1,
+      1,
+      4,
+      4,
+      4,
+      4,
+      4
     ],
     "ProductType": 0,
     "Quantity": null,
@@ -134,7 +141,27 @@
     "Url": "https://www.kirklandwa.gov/Government/Departments/Parks-and-Community-Services/Find-a-Park/Marsh-Park",
     "Title": "Marsh Park",
     "Description": "Marsh Park is a waterfront park with a large grass lawn, a dock, picnic tables, restrooms and a small parking lot. It is located in the Lakeview neighborhood and features views of the Seattle Skyline.",
-    "Ratings": null,
+    "Ratings": [
+      2,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2
+    ],
     "ProductType": 0,
     "Quantity": null,
     "Price": 0,
@@ -171,19 +198,6 @@
     "CommentList": []
   },
   {
-    "Id": "Olympic National Park",
-    "Maker": null,
-    "img": "https://www.nps.gov/common/uploads/grid_builder/olym/crop16_9/6A0BC6CD-A5BC-4FFF-3E55DC9FEEF403E9.jpg?width=640\u0026quality=90\u0026mode=crop",
-    "Url": "https://www.nps.gov/olym/index.htm",
-    "Title": "Olympic National Park",
-    "Description": "With its incredible range of precipitation and elevation, diversity is the hallmark of Olympic National Park. Encompassing nearly a million acres, the park protects a vast wilderness, thousands of years of human history, and several distinctly different ecosystems, including glacier-capped mountains, old-growth temperate rain forests, and over 70 miles of wild coastline. Come explore!",
-    "Ratings": null,
-    "ProductType": 0,
-    "Quantity": null,
-    "Price": 0,
-    "CommentList": []
-  },
-  {
     "Id": "San Juan Island National Historical Park",
     "Maker": null,
     "img": "http://sanjuanislandtrails.org/wp/wp-content/uploads/2010/01/main-index.gif",
@@ -209,7 +223,4 @@
     "Price": 0,
     "CommentList": []
   }
-  
-
-  
 ]
