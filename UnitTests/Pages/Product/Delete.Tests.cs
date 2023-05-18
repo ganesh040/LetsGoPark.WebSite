@@ -33,11 +33,11 @@ namespace UnitTests.Pages.Product.Delete
             /// Arrange (preparing the necessary objects or data for the test)
 
             // Act (performing the actual operation being tested)
-            pageModel.OnGet("Olympic National Park");
+            pageModel.OnGet("Juanita Beach Park");
 
             // Assert (verifying the expected outcome)
             Assert.AreEqual(true, pageModel.ModelState.IsValid);
-            Assert.AreEqual("Olympic National Park", pageModel.Product.Title);
+            Assert.AreEqual("Juanita Beach Park", pageModel.Product.Title);
         }
         #endregion OnGet
 
