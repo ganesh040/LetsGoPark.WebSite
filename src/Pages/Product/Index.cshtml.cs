@@ -13,11 +13,16 @@ namespace LetsGoPark.WebSite.Pages.Product
     /// </summary>
     public class IndexModel : PageModel
     {
+        public IndexModel(JsonFileProductService productService)
+        {
+            ProductService = productService;
+        }
+
         /// <summary>
         /// Default Constructor
         /// </summary>
         /// <param name="productService"></param>
-        public IndexModel(JsonFileProductService productService)
+        public IndexModel(Microsoft.Extensions.Logging.ILogger<IndexModel> @object, JsonFileProductService productService)
         {
             ProductService = productService;
         }

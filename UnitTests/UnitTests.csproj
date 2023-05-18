@@ -19,4 +19,7 @@
     <ProjectReference Include="..\src\LetsGoPark.WebSite.csproj" />
    </ItemGroup>
 
+   <ItemGroup>
+     <Compile Remove="Pages\Product\Create.cshtml %28copy%29.Tests.cs" />
+   </ItemGroup>
 </Project>
