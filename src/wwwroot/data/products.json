@@ -222,18 +222,5 @@
     "Quantity": null,
     "Price": 0,
     "CommentList": []
-  },
-  {
-    "Id": "7c9ac2dc-6b77-412d-b8dd-186d21cffba1",
-    "Maker": null,
-    "img": null,
-    "Url": "Enter URL",
-    "Title": "Demo",
-    "Description": "Demo Description",
-    "Ratings": null,
-    "ProductType": 0,
-    "Quantity": null,
-    "Price": 0,
-    "CommentList": []
   }
 ]

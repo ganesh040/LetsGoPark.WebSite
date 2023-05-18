@@ -14,7 +14,7 @@ namespace UnitTests.Components
 
         [SetUp]
         public void TestInitialize()
-        { 
+        {
         }
 
         #endregion TestSetup
