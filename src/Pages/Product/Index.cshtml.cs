@@ -22,10 +22,14 @@ namespace LetsGoPark.WebSite.Pages.Product
             ProductService = productService;
         }
 
-        // Data Service
+        /// <summary>
+        /// Data Service
+        /// </summary>
         public JsonFileProductService ProductService { get; }
 
-        // Collection of the Data
+        /// <summary>
+        /// Collection of the Data
+        /// </summary>
         public IEnumerable<ProductModel> Products { get; private set; }
 
         /// <summary>

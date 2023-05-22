@@ -14,6 +14,9 @@
 		<Content Update="wwwroot\data\products.json">
 			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
+		<Content Update="Properties\ServiceDependencies\LetsGoParkWebSite - Web Deploy\profile.arm.json">
+		  <CopyToPublishDirectory>Never</CopyToPublishDirectory>
+		</Content>
 	</ItemGroup>
 
 </Project>

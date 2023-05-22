@@ -15,7 +15,9 @@ namespace LetsGoPark.WebSite.Pages.Product
 
     public class UpdateModel : PageModel
     {
-        // Data middletier
+        /// <summary>
+        /// Data middletier
+        /// </summary>
         public JsonFileProductService ProductService { get; }
 
         /// <summary>
@@ -28,7 +30,9 @@ namespace LetsGoPark.WebSite.Pages.Product
             ProductService = productService;
         }
 
-        // The data to show, bind to it for the post
+        /// <summary>
+        /// The data to show, bind to it for the post
+        /// </summary>
         [BindProperty]
         public ProductModel Product { get; set; }
 

@@ -6,7 +6,9 @@ using Microsoft.Extensions.Logging;
 /// </summary>
 public class AboutUsModel : PageModel
 {
-    // Logger
+    /// <summary>
+    /// Logger
+    /// </summary>
     private readonly ILogger<AboutUsModel> _logger;
 
 
@@ -20,7 +22,7 @@ public class AboutUsModel : PageModel
         _logger = logger;
     }
 
-    //
+    
 
     /// <summary>
     /// OnGet() does not have any functionality

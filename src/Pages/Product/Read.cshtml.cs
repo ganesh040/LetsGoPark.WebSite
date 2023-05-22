@@ -8,7 +8,9 @@ namespace LetsGoPark.WebSite.Pages.Product
 {
     public class ReadModel : PageModel
     {
-        // Data middletier
+        /// <summary>
+        /// Data middletier
+        /// </summary>
         public JsonFileProductService ProductService { get; }
         public ReadModel(JsonFileProductService productService)
         {

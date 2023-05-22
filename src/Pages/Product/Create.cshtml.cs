@@ -12,7 +12,9 @@ namespace LetsGoPark.WebSite.Pages.Product
 {
     public class CreateModel : PageModel
     {
-        // Data middle tier
+        /// <summary>
+        /// Data middle tier
+        /// </summary>
         public JsonFileProductService ProductService { get; }
 
         
@@ -23,7 +25,7 @@ namespace LetsGoPark.WebSite.Pages.Product
             ProductService = productService;
         }
 
-        // The data to show
+        /// The data to show
         public ProductModel Product;
 
         

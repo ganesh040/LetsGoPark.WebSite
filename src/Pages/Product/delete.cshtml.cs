@@ -11,7 +11,9 @@ namespace LetsGoPark.WebSite.Pages.Product
     
     public class DeleteModel : PageModel
     {
-        // Data middletier
+        /// <summary>
+        /// Data middletier
+        /// </summary>
         public JsonFileProductService ProductService { get; }
 
         /// <summary>
@@ -24,7 +26,9 @@ namespace LetsGoPark.WebSite.Pages.Product
             ProductService = productService;
         }
 
-        // The data to show, bind to it for the post
+        /// <summary>
+        /// The data to show, bind to it for the post
+        /// </summary>
         [BindProperty]
         public ProductModel Product { get; set; }
 
@@ -34,8 +38,8 @@ namespace LetsGoPark.WebSite.Pages.Product
         /// </summary>
         /// <param name="id"></param>
         public void OnGet(string id)
-        // Retrieve the product with the specified id from the ProductService
-        // and assign it to the Product property to be displayed in the page
+        /// Retrieve the product with the specified id from the ProductService
+        /// and assign it to the Product property to be displayed in the page
         {
             Product = ProductService.GetAllData().FirstOrDefault(m => m.Id.Equals(id));
         }
@@ -49,8 +53,8 @@ namespace LetsGoPark.WebSite.Pages.Product
         /// <returns></returns>
         public IActionResult OnPost()
         {
-            // Check if the model state is not valid
-            // If not valid, return the current page to display validation error
+            /// Check if the model state is not valid
+            /// If not valid, return the current page to display validation error
             if (!ModelState.IsValid)
             {
                 return Page();
