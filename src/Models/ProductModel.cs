@@ -23,14 +23,14 @@ namespace LetsGoPark.WebSite.Models
 
         public string Description { get; set; }
 
+        public string Activities { get; set; } // Activities associated with the park
+
         public int[] Ratings { get; set; }
-
-
 
         public string Quantity { get; set; }
 
         [Range(-1, 100, ErrorMessage = "Value for {0} must be between {1} and {2}.")]
-        public int Price { get; set; }
+        //public int Price { get; set; }
 
         // Store the Comments entered by the users on this product
         public List<CommentModel> CommentList { get; set; } = new List<CommentModel>();
