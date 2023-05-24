@@ -1,5 +1,6 @@
 ﻿@page "{id}"
 @using LetsGoPark.WebSite.Services
+@using LetsGoPark.WebSite.Models
 @inject JsonFileProductService ProductService
 @model LetsGoPark.WebSite.Pages.Product.UpdateModel
 
@@ -46,6 +47,14 @@
             <input asp-for="Product.Image" class="form-control" />
             <span asp-validation-for="Product.Image" class="text-danger"></span>
         </div>
+        <div class="form-group">
+            <label asp-for="Product.ProductType" class="control-label"></label>
+            <input asp-for="Product.ProductType" class="form-control" />
+            <span asp-validation-for="Product.ProductType" class="text-danger"></span>
+        </div>
+
+
+
 
         <div class="form-group">
             <input type="submit" value="Save" class="btn btn-primary" />
