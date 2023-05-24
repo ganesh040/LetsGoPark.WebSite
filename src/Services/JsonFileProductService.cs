@@ -110,11 +110,13 @@ namespace LetsGoPark.WebSite.Services
             // Update the data to the new passed in values
             productData.Title = data.Title;
             productData.Description = data.Description.Trim();
+            //productData.Activities = data.Activities.Trim();
+
             productData.Url = data.Url;
             productData.Image = data.Image;
 
             productData.Quantity = data.Quantity;
-            productData.Price = data.Price;
+            productData.Activities = data.Activities.Trim(); ;
             productData.ProductType = data.ProductType;
 
             productData.CommentList = data.CommentList;
@@ -155,6 +157,7 @@ namespace LetsGoPark.WebSite.Services
                 Id = System.Guid.NewGuid().ToString(),
                 Title = "Enter Title",
                 Description = "Enter Description",
+                Activities = "Enter Activities",
                 Url = "Enter URL",
                 Image = "",
                 ProductType = "Enter a Product Type",
