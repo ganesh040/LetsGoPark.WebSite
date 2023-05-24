@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Hosting;
 
 namespace LetsGoPark.WebSite.Services
 {
-   public class JsonFileProductService
+    public class JsonFileProductService
     {
         public JsonFileProductService(IWebHostEnvironment webHostEnvironment)
         {
@@ -25,7 +25,7 @@ namespace LetsGoPark.WebSite.Services
 
         public IEnumerable<ProductModel> GetAllData()
         {
-            using(var jsonFileReader = File.OpenText(JsonFileName))
+            using (var jsonFileReader = File.OpenText(JsonFileName))
             {
                 return JsonSerializer.Deserialize<ProductModel[]>(jsonFileReader.ReadToEnd(),
                     new JsonSerializerOptions
@@ -74,7 +74,7 @@ namespace LetsGoPark.WebSite.Services
             }
 
             // Check to see if the rating exist, if there are none, then create the array
-            if(data.Ratings == null)
+            if (data.Ratings == null)
             {
                 data.Ratings = new int[] { };
             }
@@ -115,6 +115,7 @@ namespace LetsGoPark.WebSite.Services
 
             productData.Quantity = data.Quantity;
             productData.Price = data.Price;
+            productData.ProductType = data.ProductType;
 
             productData.CommentList = data.CommentList;
 
@@ -156,6 +157,7 @@ namespace LetsGoPark.WebSite.Services
                 Description = "Enter Description",
                 Url = "Enter URL",
                 Image = "",
+                ProductType = "Enter a Product Type",
             };
 
             // Get the current set, and append the new record to it becuase IEnumerable does not have Add
