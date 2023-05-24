@@ -8,8 +8,8 @@ using LetsGoPark.WebSite.Services;
 namespace LetsGoPark.WebSite.Controllers
 {
     /// <summary>
-     /// API controller for managing products.
-     /// </summary>
+    /// API controller for managing products.
+    /// </summary>
     [ApiController]
     [Route("[controller]")]
     public class ProductsController : ControllerBase
@@ -53,7 +53,7 @@ namespace LetsGoPark.WebSite.Controllers
             
             return Ok();
         }
-
+        
         // Class representing the request model for updating the rating of a product.
         public class RatingRequest
         {
