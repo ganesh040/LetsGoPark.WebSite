@@ -64,7 +64,7 @@ namespace UnitTests.Pages.Product.Update
         }
 
         [Test]
-        public void OnPost_InValid_Model_NotValid_Return_Page()
+        public void OnPost_InValid_Model_NotValid_Should_Return_Page()
         {
             // Arrange (preparing the necessary objects or data for the test)
 

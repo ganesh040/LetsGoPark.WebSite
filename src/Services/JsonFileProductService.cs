@@ -110,13 +110,13 @@ namespace LetsGoPark.WebSite.Services
             // Update the data to the new passed in values
             productData.Title = data.Title;
             productData.Description = data.Description.Trim();
-            //productData.Activities = data.Activities.Trim();
+           
 
             productData.Url = data.Url;
             productData.Image = data.Image;
 
             productData.Quantity = data.Quantity;
-            productData.Activities = data.Activities.Trim(); ;
+            productData.Activities = data.Activities.Trim(); 
             productData.ProductType = data.ProductType;
 
             productData.CommentList = data.CommentList;
