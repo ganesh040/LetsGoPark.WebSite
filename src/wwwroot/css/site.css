@@ -1,5 +1,5 @@
 ﻿.checked {
-  color: orange;
+  color: mediumspringgreen;
 }
 
 .fa-star {
@@ -63,11 +63,11 @@ a {
     background-color: #252152;
     border-color: #252152;
 }
-.btn-primary:hover {
-    color: #fff;
-    background-color: #e9a8a6;
-    border-color: #e9a8a6;
-}
+    .btn-primary:hover {
+        color: #fff;
+        background-color: #93cfb6;
+        border-color: #93cfb6;
+    }
 
 .nav-pills .nav-link.active, .nav-pills .show > .nav-link {
   color: #fff;
