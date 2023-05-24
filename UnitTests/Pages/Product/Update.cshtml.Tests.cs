@@ -48,11 +48,12 @@ namespace UnitTests.Pages.Product.Update
             // Arrange (preparing the necessary objects or data for the test)
             pageModel.Product = new ProductModel
             {
-                Id = "San Juan Island National Historical Park",
+                Id = "id",
                 Title = "title",
                 Description = "description",
                 Url = "url",
-                Image = "image"
+                Image = "image",
+                ProductType="product type"
             };
 
             // Act (performing the actual operation being tested)
