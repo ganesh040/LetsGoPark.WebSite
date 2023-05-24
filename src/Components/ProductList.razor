@@ -4,77 +4,98 @@
 @inject JsonFileProductService ProductService
 @inject NavigationManager NavigationManager
 
+
 <div>
     <div class="row">
         <div class="col">
-            <input type="text" @onchange="(e) => UpdateFilterText(e.Value.ToString())" value="@FilterDataString" />
-            <button @onclick="(e => EnableFilterData())" class="btn btn-success">Filter</button>
-            <button @onclick="ClearInput" class="btn btn-red btn-danger" id="clear">
-                Clear
-            </button>
+            <label class="filter-label" for="category">Select a park type to filter by type: </label>
+            <select @onchange="(e) => UpdateFilterType(e.Value.ToString())" id="parkType">
+                <option selected>None</option>
+                @foreach (ProductTypeEnum category in Enum.GetValues(typeof(ProductTypeEnum)))
+                {
+                    <option value=@category>@ProductTypeEnumExtensions.DisplayName(category)</option>
+                }
+            </select>
+            <input id="filter-input" type="text" @onchange="(e) => UpdateFilterText(e.Value.ToString())" value="@FilterDataString" />
+            <button @onclick="(e => EnableFilterData())" class="btn-filter">Search</button>
+            <button @onclick="(e => ClearFilterData())" class="btn-filter">Clear</button>
         </div>
     </div>
-
 </div>
 
+
+
+<!-- Container to display filtered (or not) games -->
 <div class="container-fluid">
     @{
         var productList = ProductService.GetAllData();
+        //flag to check if any products were rendered
+        var productPresent = 0;
 
         /*
-         * 
-        Change the grouping sort order to be
-        Order by ProductType
-        Then order by ProductList Alphabetic within the Product data set
-
+        Allows searching by name of game
+        if filter enabled, filter for string entered
+        if not display all tiles
         */
-
-        // Group by the Enum
-        foreach (ProductTypeEnum productType in Enum.GetValues(typeof(ProductTypeEnum)))
+        if (FilterData)
         {
+            productList = productList.Where(m => m.Title.ToLower().Contains(FilterDataString.ToLower()));
+        }
 
-
-            // Get only the products that are of this enum type
-            var productListGroup = productList.Where(m => m.ProductType == productType);
-
-            // Order the list alphabetical
-            productListGroup = productListGroup.OrderBy(m => m.Title);
-
-            // If filter is enabled, reduce the data set to the filter string
-            if (FilterData)
+        if (!String.IsNullOrEmpty(FilterDataType))
+        {
+            if (!FilterDataType.Equals("None"))
             {
-                productListGroup = productListGroup.Where(m => m.Title.Contains(FilterDataString));
+                productList = productList.Where(m => m.ProductType.ToLower().Contains(FilterDataType.ToLower()));
             }
 
-            if (productListGroup.Any())
-            {
+        }
 
-                <hr />
-                <h2>@productType.DisplayName()</h2>
 
-                <div class="row">
-                    <div class="card-columns">
-                        @foreach (var product in productListGroup)
-                        {
-                            <div class="card">
-                                <div class="card-img" style="background-image: url('@product.Image');">
-                                </div>
-                                <div class="card-body">
-                                    <h5 class="card-title">@product.Title</h5>
-                                </div>
-                                <div class="card-footer">
-                                    <small class="text-muted">
-                                        <button @onclick="(e => SelectProduct(product.Id))" id="MoreInfoButton_@product.Id" data-toggle="modal" data-target="#productModal" class="btn btn-primary">More Info</button>
-                                    </small>
-                                </div>
+        if (FilterData)
+        {
+            productList = productList.Where(m => m.Title.Contains(FilterDataString));
+        }
+
+        if (productList.Any())
+        {
+            productPresent = 1;
+            <hr />
+
+
+            <div class="row">
+                <div class="card-columns">
+                    @foreach (var product in productList)
+                    {
+                        <div class="card">
+                            <div class="card-img" style="background-image: url('@product.Image');">
                             </div>
-                        }
-                    </div>
+                            <div class="card-body">
+                                <h5 class="card-title">@product.Title</h5>
+                            </div>
+                            <div class="card-footer">
+                                <small class="text-muted">
+                                    <button @onclick="(e => SelectProduct(product.Id))" id="MoreInfoButton_@product.Id" data-toggle="modal" data-target="#productModal" class="btn btn-primary">More Info</button>
+                                </small>
+                            </div>
+                        </div>
+                    }
                 </div>
+            </div>
+
+            if (productPresent == 0)
+            {
+                <br />
+                <br />
+                <h2>404 Error</h2>
+                <h4>
+                    The search result yeilded no matching parks!
+                </h4>
             }
         }
-        }
-   
+    }
+
+
 </div>
 
 @if (selectedProduct != null)
@@ -169,14 +190,20 @@
             </div>
         </div>
     </div>
-}
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-@code
-{
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    @code
+    {
     ProductModel selectedProduct;
     string selectedProductId;
+    string FilterDataString = "";
+    bool FilterData = false;
+    string FilterDataType;
+    int currentRating = 0;
+    int voteCount = 0;
+    string voteLabel;
 
     void SelectProduct(string productId)
     {
@@ -185,9 +212,7 @@
         GetCurrentRating();
     }
 
-    int currentRating = 0;
-    int voteCount = 0;
-    string voteLabel;
+
 
     void GetCurrentRating()
     {
@@ -258,11 +283,12 @@
         // Set the NewComment flag to false to hide the input box
         NewComment = false;
     }
-    string FilterDataString = "";
-    bool FilterData = false;
+
+
 
     void UpdateFilterText(string text)
     {
+        // set string holding name to text input from user
         FilterDataString = text;
     }
 
@@ -277,15 +303,12 @@
         // If the Filter is enabled, set the filter flag
         FilterData = false;
     }
-    public void ClearInput()
+
+    void UpdateFilterType(string category)
     {
-        FilterDataString = string.Empty;
-        NavigationManager.NavigateTo(NavigationManager.Uri, forceLoad: true);
-
-
-
+        FilterDataType = category;
     }
- 
+}
 }
 
 
