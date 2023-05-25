@@ -10,9 +10,10 @@ namespace LetsGoPark.WebSite.Models
     /// </summary>
     public enum ProductTypeEnum
     {
-        one = 0,
-        two = 1,
-        three = 2,
+        Statepark = 0,
+        Nationalpark = 1,
+        Localpark = 2,
+        others=3,
     }
 
     /// <summary>
@@ -30,9 +31,10 @@ namespace LetsGoPark.WebSite.Models
         {
             return data switch
             {
-                ProductTypeEnum.one => "one",
-                ProductTypeEnum.two => "two",
-                ProductTypeEnum.three => "three",
+                ProductTypeEnum.Statepark => "Statepark",
+                ProductTypeEnum.Nationalpark => "Nationalpark",
+                ProductTypeEnum.Localpark => "Localpark",
+                ProductTypeEnum.others => "others",
                 _ => throw new NotImplementedException(),
             };
         }

@@ -10,7 +10,7 @@
         <div class="col">
             <label class="filter-label" for="category">Select a park type to filter by type: </label>
             <select @onchange="(e) => UpdateFilterType(e.Value.ToString())" id="parkType">
-                <option selected>None</option>
+                <option selected>Please select a park type</option>
                 @foreach (ProductTypeEnum category in Enum.GetValues(typeof(ProductTypeEnum)))
                 {
                     <option value=@category>@ProductTypeEnumExtensions.DisplayName(category)</option>
