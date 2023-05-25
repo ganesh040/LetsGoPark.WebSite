@@ -15,7 +15,6 @@ namespace LetsGoPark.WebSite.Models
        
         public string Id { get; set; }
 
-
         // Gets or sets the maker of the Park.
         public string Maker { get; set; }
 
@@ -36,7 +35,8 @@ namespace LetsGoPark.WebSite.Models
         // Gets or sets the description of the Park.
         public string Description { get; set; }
 
-        public string Activities { get; set; } // Activities associated with the park
+        // Activities associated with the park
+        public string Activities { get; set; } 
 
         // Gets or sets the ratings of the park
         public int[] Ratings { get; set; }
@@ -44,7 +44,7 @@ namespace LetsGoPark.WebSite.Models
         // Gets or sets the quantity of the park
         public string Quantity { get; set; }
 
-        // Store the Comments entered by the users on this Park
+        // Returns a JSON string representation of the ProductModel object.
         public List<CommentModel> CommentList { get; set; } = new List<CommentModel>();
 
         // Returns a JSON string representation of the ProductModel object.
