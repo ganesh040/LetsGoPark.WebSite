@@ -116,7 +116,7 @@ namespace LetsGoPark.WebSite.Services
             productData.Image = data.Image;
 
             productData.Quantity = data.Quantity;
-            productData.Activities = data.Activities.Trim(); 
+ 
             productData.ProductType = data.ProductType;
 
             productData.CommentList = data.CommentList;
