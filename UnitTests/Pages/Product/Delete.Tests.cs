@@ -9,6 +9,9 @@ using LetsGoPark.WebSite.Pages.Product;
 
 namespace UnitTests.Pages.Product.Delete
 {
+    /// <summary>
+    /// Unit tests for the DeleteModel class.
+    /// </summary>
     public class DeleteTests
     {
         #region TestSetup

@@ -8,6 +8,9 @@ using LetsGoPark.WebSite.Pages.Product;
 
 namespace UnitTests.Pages.Product.Index
 {
+    /// <summary>
+    /// Unit tests for the IndexModel class.
+    /// </summary>
     public class IndexTests
     {
         #region TestSetup

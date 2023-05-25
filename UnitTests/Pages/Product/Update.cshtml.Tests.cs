@@ -9,6 +9,9 @@ using LetsGoPark.WebSite.Pages.Product;
 
 namespace UnitTests.Pages.Product.Update
 {
+    /// <summary>
+    /// Unit tests for the UpdateModel class.
+    /// </summary>
     public class UpdateTests
     {
         #region TestSetup

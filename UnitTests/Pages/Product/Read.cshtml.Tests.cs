@@ -6,6 +6,9 @@ using LetsGoPark.WebSite.Pages.Product;
 
 namespace UnitTests.Pages.Product.Read
 {
+    /// <summary>
+    /// Unit tests for the ReadModel class.
+    /// </summary>
     public class ReadTests
     {
         #region TestSetup
