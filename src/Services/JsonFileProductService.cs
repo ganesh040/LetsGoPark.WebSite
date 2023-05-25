@@ -117,7 +117,7 @@ namespace LetsGoPark.WebSite.Services
 
             productData.Quantity = data.Quantity;
  
-            productData.ProductType = data.ProductType;
+            productData.ParkType = data.ParkType;
 
             productData.CommentList = data.CommentList;
 
@@ -160,7 +160,7 @@ namespace LetsGoPark.WebSite.Services
                 Activities = "Enter Activities",
                 Url = "Enter URL",
                 Image = "",
-                ProductType = "Enter a Product Type",
+                ParkType = "Enter a Product Type",
             };
 
             // Get the current set, and append the new record to it becuase IEnumerable does not have Add

@@ -56,7 +56,7 @@ namespace UnitTests.Pages.Product.Update
                 Description = "description",
                 Url = "url",
                 Image = "image",
-                ProductType="product type"
+                ParkType="product type"
             };
 
             // Act (performing the actual operation being tested)

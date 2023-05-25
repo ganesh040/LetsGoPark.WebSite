@@ -11,9 +11,9 @@
             <label class="filter-label" for="category">Select a park type to filter by type: </label>
             <select @onchange="(e) => UpdateFilterType(e.Value.ToString())" id="parkType">
                 <option selected>Please select a park type</option>
-                @foreach (ProductTypeEnum category in Enum.GetValues(typeof(ProductTypeEnum)))
+                @foreach (ParkTypeEnum category in Enum.GetValues(typeof(ParkTypeEnum)))
                 {
-                    <option value=@category>@ProductTypeEnumExtensions.DisplayName(category)</option>
+                    <option value=@category>@ParkTypeEnumExtensions.DisplayName(category)</option>
                 }
             </select>
             <input id="filter-input" type="text" @onchange="(e) => UpdateFilterText(e.Value.ToString())" value="@FilterDataString" />
@@ -42,7 +42,7 @@
         {
             if (!FilterDataType.Equals("None"))
             {
-                productList = productList.Where(m => m.ProductType.ToLower().Contains(FilterDataType.ToLower()));
+                productList = productList.Where(m => m.ParkType.ToLower().Contains(FilterDataType.ToLower()));
             }
 
         }

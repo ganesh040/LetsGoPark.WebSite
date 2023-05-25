@@ -23,7 +23,7 @@ namespace LetsGoPark.WebSite.Models
         public string Image { get; set; }
 
         // Enum product type
-        public string ProductType { get; set; }
+        public string ParkType { get; set; }
 
         // Gets or sets the URL of the Park.
         public string Url { get; set; }
