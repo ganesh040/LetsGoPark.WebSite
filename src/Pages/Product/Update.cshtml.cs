@@ -65,8 +65,10 @@ namespace LetsGoPark.WebSite.Pages.Product
                 return Page();
             }
 
+            // Update the data using the ProductService.
             ProductService.UpdateData(Product);
 
+            // Redirect to the index page.
             return RedirectToPage("./Index");
         }
     }
