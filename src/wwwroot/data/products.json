@@ -219,7 +219,20 @@
     "Description": "Ascending to 14,410 feet above sea level, Mount Rainier stands as an icon in the Washington landscape. An active volcano, Mount Rainier is the most glaciated peak in the contiguous U.S.A., spawning five major rivers. Subalpine wildflower meadows ring the icy volcano while ancient forest cloaks Mount Rainier\u2019s lower slopes. Wildlife abounds in the park\u2019s ecosystems. A lifetime of discovery awaits.",
     "Activities": "Activities: Hiking, Climbing, Camping,Discover Wildflowers, Bicycling, Fishing, Boating ",
     "Ratings": [
-      5
+      5,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      2,
+      2,
+      2,
+      2
     ],
     "Quantity": null,
     "CommentList": []
@@ -262,58 +275,6 @@
     "Description": "San Juan Island National Historical Park is composed of 2,141 acres of woodland, prairie and saltwater shoreline in two units on San Juan Island, one of the 172 named islands and reefs in San Juan County, Washington State.",
     "Activities": "Activities: Kayaking, Boating, Fishing ",
     "Ratings": [],
-    "Quantity": null,
-    "CommentList": []
-  },
-  {
-    "Id": "aba77733-dd0e-4a38-bf8e-943b0b7e549e",
-    "Maker": null,
-    "img": "",
-    "ParkType": "Enter a Product Type",
-    "Url": "Enter URL",
-    "Title": "Enter Title",
-    "Description": "Enter Description",
-    "Activities": "Enter Activities",
-    "Ratings": null,
-    "Quantity": null,
-    "CommentList": []
-  },
-  {
-    "Id": "f59c559f-b5bc-4da8-a2f2-ac4ae14c1118",
-    "Maker": null,
-    "img": "",
-    "ParkType": "Enter a Product Type",
-    "Url": "Enter URL",
-    "Title": "Enter Title",
-    "Description": "Enter Description",
-    "Activities": "Enter Activities",
-    "Ratings": null,
-    "Quantity": null,
-    "CommentList": []
-  },
-  {
-    "Id": "64abca99-85d7-48de-a4d6-f0bbd72f7ecb",
-    "Maker": null,
-    "img": null,
-    "ParkType": "Enter a Product Type",
-    "Url": "Enter URL",
-    "Title": "Enter Title",
-    "Description": "Enter Description",
-    "Activities": "Enter Activities",
-    "Ratings": null,
-    "Quantity": null,
-    "CommentList": []
-  },
-  {
-    "Id": "e5afa42b-9a7b-4742-8ab7-77cde745c0ae",
-    "Maker": null,
-    "img": "",
-    "ParkType": "Enter a Product Type",
-    "Url": "Enter URL",
-    "Title": "Enter Title",
-    "Description": "Enter Description",
-    "Activities": "Enter Activities",
-    "Ratings": null,
     "Quantity": null,
     "CommentList": []
   }
