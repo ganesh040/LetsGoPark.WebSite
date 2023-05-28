@@ -35,7 +35,7 @@ namespace LetsGoPark.WebSite.Models
                 ParkTypeEnum.Nationalpark => "Nationalpark",
                 ParkTypeEnum.Localpark => "Localpark",
                 ParkTypeEnum.others => "others",
-                _ => throw new NotImplementedException(),
+                _ => ""
             };
         }
     }
