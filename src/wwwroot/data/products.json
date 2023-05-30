@@ -8,7 +8,7 @@
     "Title": "LAKE SAMMAMISH STATE PARK",
     "Description": "Lake Sammamish State Park is a 531-acre, day-use park with 6,858 feet of waterfront on Lake Sammamish. The area around the lake carries cultural significance as a gathering place for at least four Native American tribes.",
     "Activities": "Activities: Hiking, Swiming, Boating, Fishing, kayaking",
-    "Ratings": [],
+    "Ratings": null,
     "Quantity": null,
     "CommentList": []
   },
@@ -22,6 +22,8 @@
     "Description": "Bridle Trails State Park is a 489-acre day-use park with 28 miles of trails that welcomes equestrians, hikers and visitors. It does not offer bike trails or camping. The park is known as one of the top equestrian parks west of the Mississippi; it does not, however, offer horse rentals.",
     "Activities": "Activities: Horse-related events,Evening musical shows",
     "Ratings": [
+      1,
+      2,
       1
     ],
     "Quantity": null,
@@ -47,7 +49,14 @@
       5,
       5,
       5,
-      5
+      5,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3
     ],
     "Quantity": null,
     "CommentList": []
@@ -59,13 +68,36 @@
     "ParkType": "Statepark",
     "Url": "https://www.parks.wa.gov/476/Blake-Island",
     "Title": "BLAKE ISLAND MARINE STATE PARK",
-    "Description": "Blake Island Marine State Park is a 472-acre, marine camping park with 5 miles of saltwater beach shoreline and approximately 655 acres of saltwater bedland. The park is reachable only by tour boat or private boat. ",
+    "Description": "Blake Island Marine State Park is a 472-acre, marine camping park with 5 miles of saltwater beach shoreline and approximately 655 acres of saltwater bedland. The park is reachable only by tour boat or private boat.",
     "Activities": "Activities: Mountain Biking, Hiking, Fishing, Boating, Diving,crabbing, Bird Watching ",
     "Ratings": [
-      5
+      5,
+      1,
+      1,
+      1,
+      1,
+      1,
+      2,
+      2,
+      2,
+      2,
+      3,
+      3,
+      3,
+      3,
+      2,
+      2,
+      2,
+      2,
+      2
     ],
     "Quantity": null,
-    "CommentList": []
+    "CommentList": [
+      {
+        "Id": "e5b7f403-0fd6-4b6d-8e0b-8714bebabdcf",
+        "Comment": "hello"
+      }
+    ]
   },
   {
     "Id": "SAINT EDWARD STATE PARK",
@@ -107,10 +139,57 @@
       2,
       2,
       2,
-      2
+      2,
+      3,
+      3,
+      3,
+      3,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1
     ],
     "Quantity": null,
-    "CommentList": []
+    "CommentList": [
+      {
+        "Id": "3be34c3d-5784-4ee0-b286-c9916ba505a2",
+        "Comment": "hello"
+      },
+      {
+        "Id": "4c0c48b4-f84d-4805-a337-807e49e49dbb",
+        "Comment": "hello world"
+      },
+      {
+        "Id": "af89d4a0-428a-4a4f-b268-ab39b1e51cb3",
+        "Comment": "hello"
+      },
+      {
+        "Id": "7c9c269a-bc32-4a26-96ef-0d59cb8e17c7",
+        "Comment": "joking"
+      }
+    ]
   },
   {
     "Id": "DORIS Cooper Houghton Beach Park",
@@ -121,7 +200,12 @@
     "Title": "Doris Cooper Houghton Beach Park",
     "Description": "Doris Cooper Houghton Beach Park is a waterfront community park featuring a playground, picnic areas, sand volleyball court, and seasonal swimming area.",
     "Activities": "Activities: playground, picnic areas, sand volleyball court, swimming area.",
-    "Ratings": [],
+    "Ratings": [
+      1,
+      1,
+      1,
+      1
+    ],
     "Quantity": null,
     "CommentList": []
   },
@@ -235,7 +319,16 @@
       2
     ],
     "Quantity": null,
-    "CommentList": []
+    "CommentList": [
+      {
+        "Id": "765223af-5331-409a-b51d-e96f1d3a33ff",
+        "Comment": "hello"
+      },
+      {
+        "Id": "7766d667-b25e-4bd3-ab4e-2b09cee5f452",
+        "Comment": "hello world"
+      }
+    ]
   },
   {
     "Id": "North Cascades National Park",
@@ -261,7 +354,18 @@
     "Title": "San Juan Island National Historical Park",
     "Description": "San Juan Island National Historical Park is composed of 2,141 acres of woodland, prairie and saltwater shoreline in two units on San Juan Island, one of the 172 named islands and reefs in San Juan County, Washington State.",
     "Activities": "Activities: Guided tours, children\u0027s programs,living history demonstrations and workshops, Picnic Areas ",
-    "Ratings": null,
+    "Ratings": [
+      2,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3
+    ],
     "Quantity": null,
     "CommentList": []
   },

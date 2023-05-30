@@ -2,96 +2,75 @@
 @using LetsGoPark.WebSite.Services
 @using Microsoft.AspNetCore.Components.Web
 @inject JsonFileProductService ProductService
-@inject NavigationManager NavigationManager
-
 
 <div>
     <div class="row">
         <div class="col">
             <label class="filter-label" for="category">Select a park type to filter by type: </label>
-            <select @onchange="(e) => UpdateFilterType(e.Value.ToString())" id="parkType">
+            <select @onchange="UpdateFilterType" id="parkType">
                 <option selected>Please select a park type</option>
                 @foreach (ParkTypeEnum category in Enum.GetValues(typeof(ParkTypeEnum)))
                 {
-                    <option value=@category>@ParkTypeEnumExtensions.DisplayName(category)</option>
+                    <option value="@category">@ParkTypeEnumExtensions.DisplayName(category)</option>
                 }
             </select>
-            <input id="filter-input" type="text" @onchange="(e) => UpdateFilterText(e.Value.ToString())" value="@FilterDataString" />
-            <button @onclick="(e => EnableFilterData())" class="btn-filter">Search</button>
-            <button @onclick="(e => ClearFilterData())" class="btn-filter">Clear</button>
+            <input id="filter-input" type="text" @oninput="UpdateFilterText" value="@FilterDataString" />
+            <button @onclick="EnableFilterData" class="btn-filter">Search</button>
+            <button @onclick="ClearFilterData" class="btn-filter">Clear</button>
         </div>
     </div>
 </div>
 
-
-
-
 <div class="container-fluid">
     @{
         var productList = ProductService.GetAllData();
- 
-        var productPresent = 0;
 
-
-        if (FilterData)
+        // Group by the Enum
+        foreach (ParkTypeEnum parkType in Enum.GetValues(typeof(ParkTypeEnum)))
         {
-            productList = productList.Where(m => m.Title.ToLower().Contains(FilterDataString.ToLower()));
-        }
+            // Get only the products that are of this enum type
+            var productListGroup = productList.Where(m => m.ParkType == parkType.ToString());
 
-        if (!String.IsNullOrEmpty(FilterDataType))
-        {
-            if (!FilterDataType.Equals("None"))
+            // Order the list alphabetically
+            productListGroup = productListGroup.OrderBy(m => m.Title);
+
+            if (FilterData)
             {
-                productList = productList.Where(m => m.ParkType.ToLower().Contains(FilterDataType.ToLower()));
+                productListGroup = productListGroup.Where(m => m.Title.ToLower().Contains(FilterDataString.ToLower()));
             }
 
-        }
-
-
-        if (FilterData)
-        {
-            productList = productList.Where(m => m.Title.Contains(FilterDataString));
-        }
-
-        if (productList.Any())
-        {
-            productPresent = 1;
-            <hr />
-
-
-            <div class="row">
-                <div class="card-columns">
-                    @foreach (var product in productList)
-                    {
-                        <div class="card">
-                            <div class="card-img" style="background-image: url('@product.Image');">
-                            </div>
-                            <div class="card-body">
-                                <h5 class="card-title">@product.Title</h5>
-                            </div>
-                            <div class="card-footer">
-                                <small class="text-muted">
-                                    <button @onclick="(e => SelectProduct(product.Id))" id="MoreInfoButton_@product.Id" data-toggle="modal" data-target="#productModal" class="btn btn-primary">More Info</button>
-                                </small>
-                            </div>
-                        </div>
-                    }
-                </div>
-            </div>
-
-            if (productPresent == 0)
+            if (!string.IsNullOrEmpty(FilterDataType) && !FilterDataType.Equals("None"))
             {
-                <br />
-                <br />
-                <h2>404 Error</h2>
-                <h4>
-                    The search result yeilded no matching parks!
-                </h4>
+                productListGroup = productListGroup.Where(m => m.ParkType.ToLower().Contains(FilterDataType.ToLower()));
+            }
+
+            if (productListGroup.Any())
+            {
+                <hr />
+                <h2>@parkType.DisplayName()</h2>
+
+                <div class="row">
+                    <div class="card-columns">
+                        @foreach (var product in productListGroup)
+                        {
+                            <div class="card">
+                                <div class="card-img" style="background-image: url('@product.Image');">
+                                </div>
+                                <div class="card-body">
+                                    <h5 class="card-title">@product.Title</h5>
+                                </div>
+                                <div class="card-footer">
+                                    <small class="text-muted">
+                                        <button @onclick="(() => SelectProduct(product.Id))" id="MoreInfoButton_@product.Id" data-toggle="modal" data-target="#productModal" class="btn btn-primary">More Info</button>
+                                    </small>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
             }
         }
     }
-
-
 </div>
 
 @if (selectedProduct != null)
@@ -111,7 +90,6 @@
                         </div>
                         <div class="card-body">
                             <p class="card-text">@selectedProduct.Description</p>
-                           
                         </div>
                     </div>
                 </div>
@@ -120,7 +98,7 @@
                         <div class="row">
                             <div class="col">
                                 @{
-                                    var voteString = @voteCount + " " + @voteLabel;
+                                    var voteString = $"{voteCount} {voteLabel}";
 
                                     if (voteCount == 0)
                                     {
@@ -139,7 +117,7 @@
                                             checkedText = "checked";
                                         }
 
-                                        <span class="fa fa-star @checkedText" @onclick="(e => SubmitRating(currentStar))"></span>
+                                        <span class="fa fa-star @checkedText" @onclick="(() => SubmitRating(currentStar))"></span>
                                     }
                                 }
                             </div>
@@ -158,21 +136,23 @@
                                         </div>
                                     }
 
+                                    // If this is a new comment, then add the Input boxes for it, else show the Add Comment Button
                                     if (NewComment)
                                     {
                                         <div class="row">
                                             <div class="col">
-                                                <input type="text" @onchange="(e) => UpdateCommentText(e.Value.ToString())" value="@NewCommentText" />
-                                                <button @onclick="(e => AddComment())" class="btn btn-success" data-toggle="modal">Save Comment</button>
+                                                <input type="text" @oninput="UpdateCommentText" value="@NewCommentText" />
+                                                <button @onclick="AddComment" class="btn btn-success" data-toggle="modal">Save Comment</button>
                                             </div>
                                         </div>
                                     }
 
-                                    if (NewComment == false)
+                                    // If this is not a new comment, then show the buttons for Adding comment and Close
+                                    if (!NewComment)
                                     {
                                         <div class="row">
                                             <div class="col">
-                                                <button @onclick="(e => ShowNewCommentInput())" id="AddComment" class="btn btn-primary">Add Comment</button>
+                                                <button @onclick="ShowNewCommentInput" id="AddComment" class="btn btn-primary">Add Comment</button>
                                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                                             </div>
                                         </div>
@@ -185,17 +165,19 @@
             </div>
         </div>
     </div>
+}
 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
-    @code
-    {
+@code
+{
     ProductModel selectedProduct;
     string selectedProductId;
+    string FilterDataType;
     string FilterDataString = "";
     bool FilterData = false;
-    string FilterDataType;
+    bool NewComment = false;
+    string NewCommentText = "";
     int currentRating = 0;
     int voteCount = 0;
     string voteLabel;
@@ -207,11 +189,9 @@
         GetCurrentRating();
     }
 
-
-
     void GetCurrentRating()
     {
-        if (selectedProduct.Ratings == null)
+        if (selectedProduct.Ratings == null || !selectedProduct.Ratings.Any())
         {
             currentRating = 0;
             voteCount = 0;
@@ -233,73 +213,41 @@
         SelectProduct(selectedProductId);
     }
 
-    bool NewComment = false;
-
-    string NewCommentText = "";
-
-    /// <summary>
-    /// Enable the New Comment Entry by setting the NewComment flag
-    /// </summary>
-    /// <param name="comment"></param>
     void ShowNewCommentInput()
     {
         NewComment = true;
     }
 
-    /// <summary>
-    /// </summary>
-    /// <param name="newCommentText"></param>
-    void UpdateCommentText(string newCommentText)
+    void UpdateCommentText(ChangeEventArgs e)
     {
-        NewCommentText = newCommentText;
+        NewCommentText = e.Value.ToString();
     }
 
-    /// <summary>
-    /// Add the comment to the product
-    /// Best to refactor this to be a method to call in the Middle Tier Data service, rathern than putting the logic here...
-    /// </summary>
-    /// <param name="comment"></param>
     void AddComment()
     {
-        // Refactor to be a call to the middle tier
-        // ProductService.AddCommentToProduct(selectedProduct, comment);
-
-
-        // Add it to the Comment List
-        selectedProduct.CommentList.Add(new CommentModel() { Comment = NewCommentText });
-
-        // Call for the Product to be saved
+        selectedProduct.CommentList.Add(new CommentModel { Comment = NewCommentText });
         ProductService.UpdateData(selectedProduct);
-
-        // Set the NewComment flag to false to hide the input box
         NewComment = false;
     }
 
-
-
-    void UpdateFilterText(string text)
+    void UpdateFilterText(ChangeEventArgs e)
     {
-        // set string holding name to text input from user
-        FilterDataString = text;
+        FilterDataString = e.Value.ToString();
     }
 
     void EnableFilterData()
     {
-        // If the Filter is enabled, set the filter flag
         FilterData = true;
     }
 
     void ClearFilterData()
     {
-        // If the Filter is enabled, set the filter flag
         FilterData = false;
     }
-    //some additonal comments for the filter type
-    void UpdateFilterType(string category)
+
+    void UpdateFilterType(ChangeEventArgs e)
     {
-        FilterDataType = category;
+        FilterDataType = e.Value.ToString();
     }
 }
-}
-
 
