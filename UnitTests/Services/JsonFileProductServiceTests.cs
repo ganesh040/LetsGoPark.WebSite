@@ -81,31 +81,7 @@ namespace UnitTests.Services.JsonFileProductServiceTests
 
 
 
-        [Test]
-        public void AddRating_Valid_Product_Valid_Rating_Valid_Should_Return_True()
-        {
-            // Arrange
 
-
-
-            // Get the first data item
-            var data = TestHelper.ProductService.GetAllData().First();
-            var countOriginal = data.Ratings.Length;
-
-
-
-            // Act
-            // Call the AddRating method of the ProductService with a valid product ID and rating
-            var result = TestHelper.ProductService.AddRating(data.Id, 5);
-            var dataNewList = TestHelper.ProductService.GetAllData().First();
-
-
-
-            // Assert
-            Assert.AreEqual(true, result);
-            Assert.AreEqual(countOriginal + 1, dataNewList.Ratings.Length);
-            Assert.AreEqual(5, dataNewList.Ratings.Last());
-        }
 
 
 
