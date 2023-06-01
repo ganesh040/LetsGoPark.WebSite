@@ -19,8 +19,6 @@ namespace LetsGoPark.WebSite.Models
 
 
 
-        // Gets or sets the maker of the Park.
-        public string Maker { get; set; }
 
 
 
@@ -37,7 +35,6 @@ namespace LetsGoPark.WebSite.Models
 
 
 
-        public List<string> Images { get; set; }
 
 
 
@@ -72,8 +69,6 @@ namespace LetsGoPark.WebSite.Models
 
 
 
-        // Gets or sets the quantity of the park
-        public string Quantity { get; set; }
 
 
 
