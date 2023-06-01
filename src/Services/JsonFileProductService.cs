@@ -117,7 +117,6 @@ namespace LetsGoPark.WebSite.Services
             productData.Url = data.Url;
             productData.Image = data.Image;
 
-            productData.Quantity = data.Quantity;
  
             productData.ParkType = data.ParkType;
 
