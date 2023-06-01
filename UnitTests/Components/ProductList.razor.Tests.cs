@@ -63,6 +63,8 @@ namespace UnitTests.Components
             // Assert
             Assert.AreEqual(expectedValue, filter.FilterDataType);
         }
+        #region
+
 
 
 
@@ -133,7 +135,7 @@ namespace UnitTests.Components
 
             // Arrange
             Services.AddSingleton<JsonFileProductService>(TestHelper.ProductService);
-            var id = "MoreInfoButton_SAINT EDWARD STATE PARK";
+            var Title = "MoreInfoButton_SAINT EDWARD STATE PARK";
 
             var page = RenderComponent<ProductList>();
 
@@ -141,7 +143,7 @@ namespace UnitTests.Components
             var buttonList = page.FindAll("Button");
 
             // Find the one that matches the ID looking for and click it
-            var button = buttonList.First(m => m.OuterHtml.Contains(id));
+            var button = buttonList.First(m => m.OuterHtml.Contains(Title));
             button.Click();
 
             // Get the markup of the page post the Click action
@@ -190,8 +192,34 @@ namespace UnitTests.Components
             Assert.AreEqual(false, preVoteCountString.Equals(postVoteCountString));
         }
         #endregion submitrating
+        [Test]
+        public void AddCommentButton_ShouldShowInputAndSaveCommentButton()
+        {
+            // Arrange
+            Services.AddSingleton<JsonFileProductService>(TestHelper.ProductService);
+            var component = RenderComponent<ProductList>();
+            var id = "MoreInfoButton_FLAMING GEYSER STATE PARK";
 
- 
+            // Find the Buttons (more info)
+            var buttonList = component.FindAll("Button");
+
+            // Find the one that matches the ID looking for and click it
+            var button = buttonList.First(m => m.OuterHtml.Contains(id));
+            button.Click();
+
+            // Get the markup of the page post the Click action
+            var buttonMarkup = component.Markup;
+
+            // Act
+            component.Find("#AddComment").Click();
+
+            // Assert
+            Assert.IsNotNull(component.Find("input[type=text]"));
+            Assert.IsNotNull(component.Find("button.btn.btn-success"));
+        }
+
+
+
 
 
 
@@ -226,7 +254,7 @@ namespace UnitTests.Components
         }
         #endregion SelectProduct
 
-      
+        #endregion
 
 
 
