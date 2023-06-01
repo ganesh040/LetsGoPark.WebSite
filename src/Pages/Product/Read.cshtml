@@ -25,18 +25,18 @@
             <tbody>
                 @foreach (var property in Model.Product.GetType().GetProperties())
                 {
-                    var propertyName = property.Name;
-                    if (propertyName == "Ratings" || propertyName == "CommentList")
+                    if (property.Name == "Activities" || property.Name == "CommentList")
                     {
                         continue;
                     }
-                    var propertyValue = property.GetValue(Model.Product);
                     <tr>
-                        <td>@propertyName</td>
-                        <td>@propertyValue</td>
+                        <td>@property.Name</td>
+                        <td>@(property.Name == "Ratings" ? Model.GetAverageRating(Model.Product.Id) : property.GetValue(Model.Product))</td>
+
                     </tr>
                 }
             </tbody>
+
         </table>
     </div>
 </div>
