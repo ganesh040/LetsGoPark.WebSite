@@ -2,24 +2,49 @@
 @using LetsGoPark.WebSite.Services
 @inject JsonFileProductService ProductService
 @model LetsGoPark.WebSite.Pages.Product.ReadModel
+
 @{
     ViewData["Title"] = "Read page";
 }
-<div class="class">
-    <h5 class="title, txt-color" id="productTitle">@Model.Product.Title</h5>
+<div class="content-container">
+    <h1>Read</h1>
 
-    <img class="card-visible" src='@Model.Product.Image' alt='Image for @Model.Product.Title'>
+    <div class="content">
+        <h5 class="title" id="productTitle">@Model.Product.Title</h5>
 
-    <p class="card-text, txt-color">@Model.Product.Description</p>
-    <p class="card-text, txt-color">@Model.Product.Activities</p>
+        <img class="card-img" src='@Model.Product.Image' alt='Image for @Model.Product.Title'>
 
+        <!--Create a table to display every property of the Product class-->
+        <table class="table table-bordered table-striped content-container">
+            <thead>
+                <tr>
+                    <th>Property</th>
+                    <th>Value</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var property in Model.Product.GetType().GetProperties())
+                {
+                    if (property.Name == "Activities" || property.Name == "CommentList")
+                    {
+                        continue;
+                    }
+                    <tr>
+                        <td>@property.Name</td>
+                        <td>@(property.Name == "Ratings" ? Model.GetAverageRating(Model.Product.Id) : property.GetValue(Model.Product))</td>
 
+                    </tr>
+                }
+            </tbody>
+
+        </table>
+    </div>
 </div>
 
 <br />
 <br />
 
 <div class="row">
-    <a asp-page="Update" asp-route-id="@Model.Product.Id" class="btn btn-primary">Update Park</a>
-    <a asp-page="Delete" asp-route-id="@Model.Product.Id" class="btn btn-danger">Delete Park</a>
+    <a asp-page="Update" asp-route-id="@Model.Product.Id" class="btn btn-primary">Update</a>
+    <a asp-page="Delete" asp-route-id="@Model.Product.Id" class="btn btn-danger">Delete</a>
 </div>
