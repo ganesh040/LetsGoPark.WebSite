@@ -14,7 +14,6 @@
 
         <img class="card-img" src='@Model.Product.Image' alt='Image for @Model.Product.Title'>
 
-        <!--Create a table to display every property of the Product class-->
         <table class="table table-bordered table-striped content-container">
             <thead>
                 <tr>
@@ -25,18 +24,18 @@
             <tbody>
                 @foreach (var property in Model.Product.GetType().GetProperties())
                 {
-                    if (property.Name == "Activities" || property.Name == "CommentList")
+                    var propertyName = property.Name;
+                    if (propertyName == "Ratings" || propertyName == "CommentList")
                     {
                         continue;
                     }
+                    var propertyValue = property.GetValue(Model.Product);
                     <tr>
-                        <td>@property.Name</td>
-                        <td>@(property.Name == "Ratings" ? Model.GetAverageRating(Model.Product.Id) : property.GetValue(Model.Product))</td>
-
+                        <td>@propertyName</td>
+                        <td>@propertyValue</td>
                     </tr>
                 }
             </tbody>
-
         </table>
     </div>
 </div>
