@@ -110,8 +110,12 @@ html {
 }
 
 body {
-  /* Margin bottom by footer height */
-  margin-bottom: 60px;
+    /* Margin bottom by footer height */
+    margin-bottom: 60px;
+    background-image: url('https://www.vectorstock.com/royalty-free-vector/natural-cartoon-landscape-in-the-flat-style-vector-23080875');
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
 }
 p {
     font-family: 'Nunito', sans-serif;
