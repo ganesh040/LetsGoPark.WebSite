@@ -48,6 +48,13 @@
             <span class="text-danger">@Html.ValidationMessageFor(model => model.Product.Url)</span>
         </div>
 
+        <div class="form-group">
+            <label asp-for="Product.Activities" class="control-label"></label>
+            <input asp-for="Product.Activities" class="form-control" required minlength="2" maxlength="100" />
+            <span asp-validation-for="Product.Activities" class="text-danger"></span>
+            <span class="text-danger">@Html.ValidationMessageFor(model => model.Product.Activities)</span>
+        </div>
+
 
 
         <div class="form-group">
