@@ -4,11 +4,17 @@
 @inject JsonFileProductService ProductService
 @model LetsGoPark.WebSite.Pages.Product.UpdateModel
 
+
+
 @{
     ViewData["Title"] = "Update page";
 }
 
+
+
 <h1>Update</h1>
+
+
 
 <div class="container">
     <form method="post">
@@ -17,41 +23,55 @@
         <!-- Hidden field for Product Id -->
         @Html.HiddenFor(x => x.Product.Id)
 
+
+
         <div class="form-group">
             <label asp-for="Product.Title" class="control-label"></label>
-            <input asp-for="Product.Title" class="form-control" />
+            <input asp-for="Product.Title" class="form-control" required minlength="2" maxlength="50" />
             <span asp-validation-for="Product.Title" class="text-danger"></span>
         </div>
 
+
+
         <div class="form-group">
             <label asp-for="Product.Description" class="control-label"></label>
-            <input asp-for="Product.Description" class="form-control" />
+            <input asp-for="Product.Description" class="form-control" required minlength="10" maxlength="200" />
             <span asp-validation-for="Product.Description" class="text-danger"></span>
         </div>
 
-        <div class="form-group">
-            <label asp-for="Product.Quantity" class="control-label"></label>
-            <input asp-for="Product.Quantity" class="form-control" />
-            <span asp-validation-for="Product.Quantity" class="text-danger"></span>
-        </div>
+
 
         <div class="form-group">
-
             <label asp-for="Product.Url" class="control-label"></label>
-            <input asp-for="Product.Url" class="form-control" />
+            <input asp-for="Product.Url" required class="form-control" pattern="^(http|https)://.*$" />
             <span asp-validation-for="Product.Url" class="text-danger"></span>
+            <span class="text-danger">@Html.ValidationMessageFor(model => model.Product.Url)</span>
         </div>
+
+
 
         <div class="form-group">
             <label asp-for="Product.Image" class="control-label"></label>
-            <input asp-for="Product.Image" class="form-control" />
+            <input asp-for="Product.Image" required class="form-control" pattern=".*\.(jpg|jpeg|png)$" />
             <span asp-validation-for="Product.Image" class="text-danger"></span>
+            <span class="text-danger">@Html.ValidationMessageFor(model => model.Product.Image)</span>
         </div>
+
+
+
         <div class="form-group">
             <label asp-for="Product.ParkType" class="control-label"></label>
-            <input asp-for="Product.ParkType" class="form-control" />
+            <select asp-for="Product.ParkType" class="form-control">
+                <option value="Statepark">Statepark</option>
+                <option value="Nationalpark">Nationalpark</option>
+                <option value="Localpark">Localpark</option>
+                <option value="others">others</option>
+            </select>
             <span asp-validation-for="Product.ParkType" class="text-danger"></span>
         </div>
+
+
+
 
 
 
@@ -61,7 +81,11 @@
         </div>
     </form>
 
+
+
 </div>
+
+
 
 @section Scripts {
     @{
